@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { ResponseModel } from '../../request-model.interface';
+import { Hero, ResponseModel } from '../../request-model.interface';
 import { HeroesService } from '../../services/heroes.service';
 
 import {
@@ -14,7 +14,9 @@ import {
 })
 export class SearchComponent implements OnInit {
 
-  heroes$!: ResponseModel;
+  //response$ : ResponseModel;
+  heroes! : Hero[] ;
+  testeArray= [1,2,3,4,5]
   private searchTerms = new Subject<string>();
 
   constructor(private heroesService: HeroesService) { }
@@ -39,8 +41,8 @@ export class SearchComponent implements OnInit {
         return this.heroesService.getHeroes(term);
       }),
     ).subscribe(
-      (value: ResponseModel) => {this.heroes$ = value
-      console.log(this.heroes$)}
+      (value: ResponseModel) => {this.heroes = value.data.results;
+      console.log(this.heroes)}
     );
   }
 
