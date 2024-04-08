@@ -37,8 +37,8 @@ jobs:
       run: npm run build --prod
 
     - name: Substitute secret variable
-      run: sed -i "s|{{ publicKey }}|${{ secrets.MARVEL_PUBLIC_KEY }}|g" src/environments/environment.prod.ts
+      run: sed -i "s|{{ publicKey }}|${{ secrets.MARVEL_PUBLIC_KEY }}|g" src/environments/environment.ts
       
-    - run: sed -i "s|{{ privateKey }}|${{ secrets.MARVEL_PRIVATE_KEY }}|g" src/environments/environment.prod.ts
+    - run: sed -i "s|{{ privateKey }}|${{ secrets.MARVEL_PRIVATE_KEY }}|g" src/environments/environment.ts
 
     
