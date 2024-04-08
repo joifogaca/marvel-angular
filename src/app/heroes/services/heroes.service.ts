@@ -1,28 +1,23 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, first, of, take, tap } from 'rxjs';
-import { Md5Service } from '../../shared/services/md5.service';
-import { UuidService } from '../../shared/services/uuid.service';
+import { Observable, of, take, tap } from 'rxjs';
+import { AuthenticationHelperService } from '../../shared/authentication-helper.service';
 import { ResponseModel } from '../request-model.interface';
+import { environment } from './../../../environments/environment.development';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeroesService {
 
-  private heroesUrl = 'https://gateway.marvel.com:443/v1/public/characters';
-
-  private publicKey = '5cf8020eedb2156dff5af2258ef786de';
-
-  private privateKey = 'b364d0ebc7afc465628dc51ce2f8eee81d577ca4';
+  private heroesUrl = environment.apiUrl + 'characters';
 
   private hash!: string;
 
 
-  constructor(private md5service: Md5Service,
-    private uuidService: UuidService,
-    private httpClient: HttpClient) {
-
+  constructor(
+    private httpClient: HttpClient,
+    private AuthenticationHelper: AuthenticationHelperService) {
 
   }
 
@@ -33,21 +28,19 @@ export class HeroesService {
       return of();
     }
 
-    let uuid = this.uuidService.genereteUuid();
-    let hash = this.md5service.genereteHashMd5([uuid, this.privateKey, this.publicKey]);
-
+    let dataHash = this.AuthenticationHelper.genereteHashMd5();
     return this.httpClient.get<ResponseModel>(this.heroesUrl, {
       params: {
-        ts: uuid,
-        apikey: this.publicKey,
-        hash: hash,
+        ts: dataHash.uuid,
+        apikey: this.AuthenticationHelper.publicKey,
+        hash: dataHash.hash,
         nameStartsWith: nameStartsWith
       }
     }).pipe(
       tap(x => x.data.results ?
         console.log('fetched heroes') :
         console.log('not fetched log')),
-        take(1)
+      take(1)
       //catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }
