@@ -17,7 +17,9 @@ This project was generated with [Angular CLI](https://github.com/angular/angular
 
 ### Dependências e Versões Necessárias
 
-ng-bootstrap
+[ng-bootstrap]
+
+(https://github.com/angular-schule/angular-cli-ghpages)
 
 "@types/uuid": "^9.0.8"
 https://github.com/uuidjs/uuid

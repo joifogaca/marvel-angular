@@ -17,31 +17,28 @@ export interface Hero {
   name: string,
   description: string,
   thumbnail: Thumbnail;
-  comics: Comics
+  comics: Participations
+  stories: Participations
 }
 
-interface Thumbnail {
+export interface Thumbnail {
   path: string;
   extension: string;
 }
 
-export interface Comics {
+export interface Participations {
   available: number,
-  comicItems: ComicItem[];
+  items: Item[];
 }
 
 
-export interface ComicItem {
-  resourceURI: string,
-  name: string
-}
 
-export interface series {
+export interface Stories {
   available: number,
-  comicItems: SerieItem[];
+  comicItems: Item[];
 }
 
-export interface SerieItem {
+export interface Item {
   resourceURI: string,
   name: string
 }

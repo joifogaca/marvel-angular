@@ -5,6 +5,7 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { SearchComponent } from './pages/search/search.component';
 import { CardSessionComponent } from './components/card-session/card-session.component';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { CardItemComponent } from './components/card-item/card-item.component';
 
 
 
@@ -12,7 +13,8 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
   declarations: [
     CardHeroComponent,
     SearchComponent,
-    CardSessionComponent
+    CardSessionComponent,
+    CardItemComponent
   ],
   imports: [
     CommonModule,
