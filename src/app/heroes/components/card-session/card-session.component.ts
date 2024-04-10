@@ -12,8 +12,8 @@ export class CardSessionComponent {
 
   @Input() title?: string;
   @Input() id?: string;
-  @Input() participations?: Participation[];
-  
+  participations?: Participation[];
+
 
   constructor(private heroesService:HeroesService) {
 }
