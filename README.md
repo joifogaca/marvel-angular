@@ -9,8 +9,7 @@ This project was generated with  [Angular CLI](https://github.com/angular/angula
 ##  O que foi desenvolvido
 
 Uma aplicação Angular que realiza uma busca dinâmica pelos personagens da Marvel. 
-Ao encontrar o personagens que inicia com as letras digitadas.
-E retornado referente ao personagem:
+Ao encontrar o personagens que os nomes inicam com as letras digitadas, retorna para tela seguintes dados do personagem:
 
  - Nome
  - Descrição
@@ -65,5 +64,6 @@ Utilizado para deploy e publicação no GitHub Pages
   - [ ] Retornar para o usuário caso a API não retornar nenhum personagem
   - [ ] Implementar um sistema de cache para retornar os personagens carregados anteriormente no sistema
   - [ ] Adicionar teste unitário
+  - [ ] Limitar a busca a iniciar a com 3 caracteries
 
 > Written with [StackEdit](https://stackedit.io/).
