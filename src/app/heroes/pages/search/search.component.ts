@@ -16,7 +16,6 @@ export class SearchComponent implements OnInit {
 
   //response$ : ResponseModel;
   heroes!: Hero[];
-  testeArray = [1, 2, 3, 4, 5]
   private searchTerms = new Subject<string>();
 
   constructor(private heroesService: HeroesService) { }

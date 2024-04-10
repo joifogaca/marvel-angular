@@ -13,7 +13,7 @@ interface DataRequestHero {
 }
 
 export interface Hero {
-  id: number,
+  id: string,
   name: string,
   description: string,
   thumbnail: Thumbnail;

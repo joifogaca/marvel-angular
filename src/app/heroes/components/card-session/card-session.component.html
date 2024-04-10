@@ -1,14 +1,14 @@
 <p class="fs-5 mt-1">{{ title }}</p>
 
 <div ngbAccordion>
-  <div ngbAccordionItem *ngFor="let participation of participations?.items" [collapsed]="true">
+  <div ngbAccordionItem *ngFor="let participation of participations" [collapsed]="true">
     <h2 ngbAccordionHeader>
-      <button ngbAccordionButton>{{ participation?.name  }}</button>
+      <button ngbAccordionButton>{{ participation?.title  }}</button>
     </h2>
     <div ngbAccordionCollapse>
       <div ngbAccordionBody>
         <ng-template>
-          <card-participation [url]="participation.resourceURI"></card-participation>
+          <card-participation [participation]="participation"></card-participation>
         </ng-template>
       </div>
     </div>

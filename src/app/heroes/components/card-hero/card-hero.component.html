@@ -12,10 +12,10 @@
 
     <div class="row">
       <section class="col">
-        <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="Comics"
-          [participations]="hero?.comics"></card-session>
-        <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="Stories"
-          [participations]="hero?.stories"></card-session>
+        <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="comics" [id]="hero?.id"
+          ></card-session>
+        <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="stories" [id]="hero?.id"
+          ></card-session>
       </section>
     </div>
   </div>

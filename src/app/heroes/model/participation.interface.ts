@@ -1,6 +1,7 @@
 import { Thumbnail } from "./request.interface";
 
 export interface Participation {
+  title:string,
   description: string,
   thumbnail: Thumbnail;
 }
