@@ -35,9 +35,6 @@ export class HeroesService {
         nameStartsWith: nameStartsWith
       }
     }).pipe(
-      tap(x => x.data.results ?
-        console.log('fetched heroes') :
-        console.log('not fetched log')),
       take(1)
       //catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
@@ -58,9 +55,6 @@ export class HeroesService {
         hash: dataHash.hash,
       }
     }).pipe(
-      tap(x => x.data.results ?
-        console.log('fetched heroes') :
-        console.log('not fetched log')),
       take(1)
       //catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
