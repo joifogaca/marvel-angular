@@ -1,16 +1,16 @@
-<p class="fs-3">{{ title }}</p>
+<p class="fs-5 mt-1">{{ title }}</p>
 
 <div ngbAccordion>
-	<div ngbAccordionItem *ngFor="let participation of participations?.items" [collapsed]="true">
-		<h2 ngbAccordionHeader>
-			<button ngbAccordionButton>{{ participation?.name }}</button>
-		</h2>
-		<div ngbAccordionCollapse>
-			<div ngbAccordionBody>
-				<ng-template>
-					<p>Teste por enquanto </p>
-				</ng-template>
-			</div>
-		</div>
-	</div>
+  <div ngbAccordionItem *ngFor="let participation of participations?.items" [collapsed]="true">
+    <h2 ngbAccordionHeader>
+      <button ngbAccordionButton>{{ participation?.name  }}</button>
+    </h2>
+    <div ngbAccordionCollapse>
+      <div ngbAccordionBody>
+        <ng-template>
+          <card-participation [url]="participation.resourceURI"></card-participation>
+        </ng-template>
+      </div>
+    </div>
+  </div>
 </div>

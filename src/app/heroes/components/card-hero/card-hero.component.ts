@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Hero } from '../../request-model.interface';
+import { Hero } from '../../model/request.interface';
 
 @Component({
   selector: 'card-hero',
@@ -8,7 +8,7 @@ import { Hero } from '../../request-model.interface';
 })
 export class CardHeroComponent {
 
-  @Input() hero? :Hero;
+  @Input() hero?: Hero;
 
   ngOnInit(): void {
     //Called after the constructor, initializing input properties, and the first call to ngOnChanges.

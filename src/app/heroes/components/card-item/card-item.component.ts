@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { Thumbnail } from '../../request-model.interface';
+import { Thumbnail } from '../../model/request.interface';
 
 @Component({
   selector: 'card-item',

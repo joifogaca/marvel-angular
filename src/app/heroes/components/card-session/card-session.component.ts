@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Participations } from '../../request-model.interface';
+import { Participations } from '../../model/request.interface';
+import { ParticipationService } from '../../services/participation.service';
 
 @Component({
   selector: 'card-session',
@@ -8,6 +9,10 @@ import { Participations } from '../../request-model.interface';
 })
 export class CardSessionComponent {
 
-  @Input() title? :string;
-  @Input() participations? :Participations;
+  @Input() title?: string;
+  @Input() participations?: Participations;
+
+  constructor() {
+}
+
 }

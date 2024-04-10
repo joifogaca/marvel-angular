@@ -1,10 +1,10 @@
-export interface ResponseModel {
+export interface ResponseHero {
   code: string;
   status: string;
-  data: DataRequest;
+  data: DataRequestHero;
 }
 
-interface DataRequest {
+interface DataRequestHero {
   offset: number;
   limit: number;
   total: number,
@@ -42,6 +42,8 @@ export interface Item {
   resourceURI: string,
   name: string
 }
+
+
 
 
 

@@ -1,0 +1,6 @@
+<ng-container *ngIf="participation; else loading">
+  <card-item [description]="participation.description" [thumbnail]="participation.thumbnail"></card-item>
+</ng-container>
+<ng-template #loading>
+  <ngb-progressbar class="mb-3" type="info" [value]="100" />
+</ng-template>

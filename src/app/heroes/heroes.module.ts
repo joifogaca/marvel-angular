@@ -4,8 +4,9 @@ import { CardHeroComponent } from './components/card-hero/card-hero.component';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { SearchComponent } from './pages/search/search.component';
 import { CardSessionComponent } from './components/card-session/card-session.component';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbProgressbarModule } from '@ng-bootstrap/ng-bootstrap';
 import { CardItemComponent } from './components/card-item/card-item.component';
+import { CardParticipationComponent } from './components/card-participation/card-participation.component';
 
 
 
@@ -14,12 +15,14 @@ import { CardItemComponent } from './components/card-item/card-item.component';
     CardHeroComponent,
     SearchComponent,
     CardSessionComponent,
-    CardItemComponent
+    CardItemComponent,
+    CardParticipationComponent
   ],
   imports: [
     CommonModule,
     HeroesRoutingModule,
-    NgbAccordionModule
+    NgbAccordionModule,
+    NgbProgressbarModule
   ],
   exports: [
     CardHeroComponent
