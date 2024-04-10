@@ -1,23 +1,22 @@
-<div class="card w-100 mt-3">
-  <div class="row g-0">
-    <div class="col-md-4">
-      <img [src]="hero?.thumbnail?.path + '.jpg'" class="img-fluid rounded-start" alt="...">
-    </div>
-    <div class="col-md-8">
-      <div class="card-body">
-        <h5 class="card-title">{{ hero?.name }}</h5>
-        <div *ngIf="hero?.description" class="float-end">
-          <h6 class="card-subtitle m-2 text-body-secondary">Descrição</h6>
-          <p class="card-text">{{ hero?.description }}</p>
-        </div>
-
-      </div>
-    </div>
+<div class="card text-center mt-3">
+  <div class="card-header">
+    {{ hero?.name }}
   </div>
-  <div class="row">
-    <section class="col">
-      <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="Comics" [participations]="hero?.comics" ></card-session>
-        <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="Stories" [participations]="hero?.stories" ></card-session>
-    </section>
+  <div class="card-body">
+    <ng-container *ngIf="hero?.description; else noDescription">
+      <card-item [description]="hero?.description" [thumbnail]="hero?.thumbnail"></card-item>
+    </ng-container>
+    <ng-template #noDescription>
+      <img [src]="hero?.thumbnail?.path + '.jpg'" class="img-thumbnail" alt="...">
+    </ng-template>
+
+    <div class="row">
+      <section class="col">
+        <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="Comics"
+          [participations]="hero?.comics"></card-session>
+        <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="Stories"
+          [participations]="hero?.stories"></card-session>
+      </section>
+    </div>
   </div>
 </div>

@@ -26,3 +26,8 @@ https://github.com/uuidjs/uuid
 
  "md5": "^2.3.0",
  https://github.com/pvorb/node-md5
+
+
+ ng build --base-href="https://joifogaca.github.io/marvel-angular/"
+
+npx angular-cli-ghpages --dir=dist/marvel-angular/browser
