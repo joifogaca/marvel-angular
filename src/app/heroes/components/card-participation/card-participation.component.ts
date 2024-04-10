@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
-import { Participation, ResponseParticipation } from '../../model/participation.interface';
-import { ParticipationService } from '../../services/participation.service';
+
+import { Participation } from '../../model/participation.interface';
 
 @Component({
   selector: 'card-participation',
@@ -12,8 +12,7 @@ export class CardParticipationComponent {
   @Input() participation?: Participation;
 
 
-  constructor(private participationService: ParticipationService,
-  ) {
+  constructor() {
 
   }
 

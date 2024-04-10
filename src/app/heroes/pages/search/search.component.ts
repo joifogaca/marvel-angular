@@ -1,11 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
+
 import { Hero, ResponseHero } from '../../model/request.interface';
 import { HeroesService } from '../../services/heroes.service';
-
-import {
-  debounceTime, distinctUntilChanged, switchMap, tap
-} from 'rxjs/operators';
 
 @Component({
   selector: 'app-search',
@@ -21,14 +19,12 @@ export class SearchComponent implements OnInit {
   constructor(private heroesService: HeroesService) { }
 
   search(term: string): void {
-    console.log('search' + term);
     this.searchTerms.next(term);
   }
 
   ngOnInit(): void {
     console.log("ng-onit")
     this.searchTerms.pipe(
-      tap((value: string) => console.log("valo " + value)),
       // wait 300ms after each keystroke before considering the term
       debounceTime(100),
 
@@ -42,9 +38,7 @@ export class SearchComponent implements OnInit {
     ).subscribe(
       (value: ResponseHero) => {
         this.heroes = value.data.results;
-        console.log(this.heroes)
       }
     );
   }
-
 }

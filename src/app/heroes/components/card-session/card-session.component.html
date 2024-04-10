@@ -1,5 +1,4 @@
-<p class="fs-5 mt-1">{{ title }}</p>
-
+<p class="fs-5 mt-1">{{ title | uppercase }}</p>
 <div ngbAccordion>
   <div ngbAccordionItem *ngFor="let participation of participations" [collapsed]="true">
     <h2 ngbAccordionHeader>

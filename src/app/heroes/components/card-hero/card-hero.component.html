@@ -3,20 +3,24 @@
     {{ hero?.name }}
   </div>
   <div class="card-body">
-    <ng-container *ngIf="hero?.description; else noDescription">
-      <card-item [description]="hero?.description" [thumbnail]="hero?.thumbnail"></card-item>
-    </ng-container>
-    <ng-template #noDescription>
-      <img [src]="hero?.thumbnail?.path + '.jpg'" class="img-thumbnail" alt="...">
-    </ng-template>
+    <section name="information-hero">
+      <ng-container *ngIf="hero?.description; else noDescription">
+        <card-item [description]="hero?.description" [thumbnail]="hero?.thumbnail"></card-item>
+      </ng-container>
+      <ng-template #noDescription>
+        <img [src]="hero?.thumbnail?.path + '.jpg'" class="img-thumbnail" alt="...">
+      </ng-template>
+    </section>
 
-    <div class="row">
-      <section class="col">
-        <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="comics" [id]="hero?.id"
-          ></card-session>
-        <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="stories" [id]="hero?.id"
-          ></card-session>
-      </section>
-    </div>
+    <section name="participations-hero">
+      <div class="row">
+        <section class="col">
+          <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="comics" [id]="hero?.id"
+            ></card-session>
+          <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="stories" [id]="hero?.id"
+            ></card-session>
+        </section>
+      </div>
+    </section>
   </div>
 </div>

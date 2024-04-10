@@ -3,12 +3,7 @@
     <input #searchBox class="form-control form-control-lg " (input)="search(searchBox.value)" type="text"
       placeholder="Busque pelo seu Herói" aria-label=".form-control-lg example">
   </div>
-  <div class="mt-3 text-bg-light">
+  <section name="heroes-list" class="mt-3 text-bg-light">
     <card-hero *ngFor="let hero of heroes" [hero]="hero"></card-hero>
-  </div>
-
-
-
-
-
+  </section>
 </div>

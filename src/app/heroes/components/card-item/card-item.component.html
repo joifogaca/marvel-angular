@@ -1,6 +1,6 @@
 <div class="card w-100 mt-1">
   <div class="row g-0">
-    <div class="col-md-3" *ngIf="thumbnail">
+    <div class="col-md-3" *ngIf="thumbnail"> <!--A api manda a thumbnail como null  -->
       <img [src]="thumbnail.path + '.jpg'" class="img-fluid rounded-start" alt="...">
     </div>
     <div class="col-md-9">
