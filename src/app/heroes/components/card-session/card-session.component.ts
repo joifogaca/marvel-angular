@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 
 import { Participation, ResponseParticipation } from '../../model/participation.interface';
 import { HeroesService } from '../../services/heroes.service';
@@ -8,7 +8,7 @@ import { HeroesService } from '../../services/heroes.service';
   templateUrl: './card-session.component.html',
   styleUrl: './card-session.component.scss'
 })
-export class CardSessionComponent {
+export class CardSessionComponent implements OnInit {
 
   @Input() title?: string;
   @Input() id?: string;
