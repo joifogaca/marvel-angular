@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { TestBed } from '@angular/core/testing';
-import { HeroesService } from './heroes.service';
+import { HeroesService } from './HeroesService';
 
 describe('HeroesService', () => {
   let service: HeroesService;

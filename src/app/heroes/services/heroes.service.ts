@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of, take, tap } from 'rxjs';
+import { Observable, delay, of, take, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthenticationHelperService } from '../../shared/authentication-helper.service';
 import { ResponseHero } from '../model/request.interface';
@@ -35,7 +35,8 @@ export class HeroesService {
         nameStartsWith: nameStartsWith
       }
     }).pipe(
-      take(1)
+      take(1),
+      delay(2000)
       //catchError(this.handleError<Hero[]>('searchHeroes', []))
     );
   }

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SearchComponent } from './search.component';
 import { of } from 'rxjs';
-import { HeroesService } from '../../services/heroes.service';
+import { HeroesService } from '../../services/HeroesService';
+import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -15,7 +15,7 @@ describe('SearchComponent', () => {
       declarations: [SearchComponent],
       providers: [{ provide: HeroesService, useValue: heroesService }]
     })
-    .compileComponents();
+      .compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
@@ -27,9 +27,9 @@ describe('SearchComponent', () => {
   });
   it('should make a call to the Service by typing in the search field', () => {
     const error = fixture.nativeElement.querySelector('#searchBox');
-//pegar o campo de pesquisa
-//dectar mudança do digitar
-//pega o valor da mudança
-//verificar se foi chamado o service com o valor da pesquisa
+    //pegar o campo de pesquisa
+    //dectar mudança do digitar
+    //pega o valor da mudança
+    //verificar se foi chamado o service com o valor da pesquisa
   });
 });
