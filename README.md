@@ -5,6 +5,11 @@
 
 This project was generated with  [Angular CLI](https://github.com/angular/angular-cli)  version 17.1.1.
 
+## Deploy da aplicação (GitHubPages)
+
+Aplicação rodando em produção: 
+https://joifogaca.github.io/marvel-angular/heroes
+
 
 ##  O que foi desenvolvido
 
@@ -31,8 +36,6 @@ npm install
 ```
 
 ###  Como rodar o projeto
-
-[](https://github.com/andrewarosario/hamburgueria-app#build)
 
 Rode`ng serve` para rodar em ambiente de desenvolvimento. Acesse a URL `http://localhost:4200/`. 
 
