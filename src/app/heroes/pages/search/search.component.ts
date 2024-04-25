@@ -16,7 +16,7 @@ export class SearchComponent implements OnInit {
 
   //response$ : ResponseModel;
   heroes!: Hero[];
-  characters!: Observable<Character[]>;
+  characters$!: Observable<Character[]>;
   loading: boolean = false;
   private searchTerms = new Subject<string>();
 
@@ -28,7 +28,7 @@ export class SearchComponent implements OnInit {
 
   ngOnInit(): void {
 
-    this.characters = this.searchTerms.pipe(
+    this.characters$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       finalize(() => this.loading = false),
       map(value => value.trim()),
