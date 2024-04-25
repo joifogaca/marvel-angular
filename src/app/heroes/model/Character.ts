@@ -1,9 +1,10 @@
 
+import { Apparances } from './Appearances';
 import { Thumbnail } from './Thumbnail';
-import { Apparances } from './appearances';
+
 
 export interface Character {
-  id: number;
+  id: string;
   name: string;
   description: string;
   thumbnail: Thumbnail;

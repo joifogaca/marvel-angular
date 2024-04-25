@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, NgOptimizedImage } from '@angular/common';
 import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 
 
@@ -23,6 +23,7 @@ import { SharedModule } from '../shared/shared.module';
   imports: [
     CommonModule,
     HeroesRoutingModule,
+    NgOptimizedImage,
     SharedModule
   ],
   schemas: [

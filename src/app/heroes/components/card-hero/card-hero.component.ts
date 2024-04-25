@@ -1,3 +1,4 @@
+import { Character } from './../../model/Character';
 import { Component, Input } from '@angular/core';
 import { Hero } from '../../model/request.interface';
 
@@ -9,5 +10,6 @@ import { Hero } from '../../model/request.interface';
 export class CardHeroComponent {
 
   @Input() hero?: Hero;
+  @Input() character?: Character;
 
 }

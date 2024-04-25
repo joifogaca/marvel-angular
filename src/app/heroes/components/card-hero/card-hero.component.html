@@ -1,23 +1,26 @@
 <div class="card text-center mt-3">
   <div class="card-header">
-    {{ hero?.name }}
+    {{ character?.name }}
   </div>
   <div class="card-body">
     <section name="information-hero">
-      <ng-container *ngIf="hero?.description; else noDescription">
-        <card-item [description]="hero?.description" [thumbnail]="hero?.thumbnail"></card-item>
+      <ng-container *ngIf="character?.description; else noDescription">
+        <card-item [description]="character?.description" [thumbnail]="character?.thumbnail"></card-item>
       </ng-container>
       <ng-template #noDescription>
-        <img [src]="hero?.thumbnail?.path + '.jpg'" class="img-thumbnail" alt="...">
+        <img [ngSrc]="character?.thumbnail?.path +'.'+ character?.thumbnail?.extension"
+        width="70"
+        height="70"
+        class="img-thumbnail" alt="...">
       </ng-template>
     </section>
 
     <section name="participations-hero">
       <div class="row">
         <section class="col">
-          <card-session *ngIf="hero?.comics?.available ?? 0 > 0" title="comics" [id]="hero?.id"
+          <card-session *ngIf="character?.comics?.available ?? 0 > 0" title="comics" [id]="character?.id"
             ></card-session>
-          <card-session *ngIf="hero?.stories?.available ?? 0 > 0" title="stories" [id]="hero?.id"
+          <card-session *ngIf="character?.series?.available ?? 0 > 0" title="stories" [id]="character?.id"
             ></card-session>
         </section>
       </div>

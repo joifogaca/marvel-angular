@@ -3,8 +3,8 @@
     <input #searchBox id="searchBox" class="form-control form-control-lg " (input)="search(searchBox.value)" type="text"
       placeholder="Busque pelo seu Herói" aria-label=".form-control-lg example">
   </div>
-  <section name="heroes-list" *ngIf="heroes && !loading" class="mt-3 text-bg-light">
-    <card-hero *ngFor="let hero of heroes" [hero]="hero"></card-hero>
+  <section name="heroes-list" *ngIf="characters" class="mt-3 text-bg-light">
+    <card-hero *ngFor="let hero of characters | async" [character]="hero"></card-hero>
   </section>
   <section *ngIf="loading">
     <loading></loading>

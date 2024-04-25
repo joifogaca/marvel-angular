@@ -1,10 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, of, take, tap } from 'rxjs';
+import { Observable, delay, map, of, take, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthenticationHelperService } from '../../shared/authentication-helper.service';
 import { ResponseHero } from '../model/request.interface';
 import { ResponseParticipation } from '../model/participation.interface';
+import { Character } from '../model/Character';
+import { MarvelResponse } from '../model/MarvelResponse';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,28 @@ export class HeroesService {
 
   }
 
+
+
+  public getHeroesByName(nameStartsWith: string): Observable<Character[]> {
+    if (!nameStartsWith.trim()) {
+      // if not search term, return empty hero array.
+      return of();
+    }
+
+    let dataHash = this.AuthenticationHelper.genereteHashMd5();
+    return this.httpClient.get<MarvelResponse>(this.heroesUrl, {
+      params: {
+        ts: dataHash.uuid,
+        apikey: this.AuthenticationHelper.publicKey,
+        hash: dataHash.hash,
+        nameStartsWith: nameStartsWith
+      }
+    }).pipe(
+      map(response => response.data.results),
+      delay(2000)
+      //catchError(this.handleError<Hero[]>('searchHeroes', []))
+    );
+  }
 
   public getHeroes(nameStartsWith: string): Observable<ResponseHero> {
     if (!nameStartsWith.trim()) {
