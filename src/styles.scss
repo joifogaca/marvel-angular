@@ -1,9 +1,43 @@
 /* You can add global styles to this file, and also import other style files */
 
 /* Importing Bootstrap SCSS file. */
-@import 'bootstrap/scss/bootstrap';
+@import '../node_modules/bootstrap/scss/functions';
+@import '../node_modules/bootstrap/scss/variables';
+@import '../node_modules/bootstrap/scss/mixins';
+
+
+
+$gray-100: #6280a7;
+$gray-200: #334c71;
+$gray-300: #273a53;
+$gray-400: #14293d;
+$gray-500: 14293d;
+$gray-700: #27313f;
+$primary: #27313f;
+$secondary: #aa0505;
+$body-bg: #ffffff;
+$body-color: #fffeee;
+$font-family-sans-serif: "Comfortaa", sans-serif;
+$font-family-base: "Red Hat Display", sans-serif;
+
+$theme-colors: (
+  "primary": $primary,
+  "secondary": $secondary
+);
+
+@import 'bootstrap/scss/bootstrap.scss';
+
+
+
+body {
+  background-image: url('./assets/img/background.jpg');
+  background-size: cover; /* Para garantir que a imagem cubra todo o fundo */
+  background-repeat: no-repeat; /* Para evitar a repetição da imagem */
+}
+
 
 img {
   height: 250px;
   width: 250px;
   }
+
