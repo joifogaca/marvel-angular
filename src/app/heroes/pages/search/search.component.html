@@ -1,16 +1,17 @@
 <div class="container">
+  {{ loading }}
   <div class="mt-3 pt-3">
     <input #searchBox id="searchBox" class="form-control form-control-lg " (input)="search(searchBox.value)" type="text"
       placeholder="Busque pelo seu Herói" aria-label=".form-control-lg example">
   </div>
   <ng-container *ngIf="(characters$ | async) as characters">
-    <section name="heroes-list"  class="mt-3 text-bg-light">
+    <section name="heroes-list" class="mt-3 text-bg-light">
       <card-hero *ngFor="let hero of characters" [character]="hero"></card-hero>
     </section>
   </ng-container>
-  <section *ngIf="loading">
+  <ng-container *ngIf="loading">
     <loading></loading>
-  </section>
+  </ng-container>
 
 
 </div>

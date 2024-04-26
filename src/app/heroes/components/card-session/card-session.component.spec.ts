@@ -1,10 +1,11 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
-import { HeroesService } from '../../services/HeroesService';
+
 import { CardSessionComponent } from './card-session.component';
 
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { of } from 'rxjs';
+import { HeroesService } from '../../services/heroes.service';
 
 
 

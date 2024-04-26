@@ -4,6 +4,7 @@ import { Participation, ResponseParticipation } from '../../model/participation.
 import { HeroesService } from '../../services/heroes.service';
 
 
+
 @Component({
   selector: 'card-session',
   templateUrl: './card-session.component.html',

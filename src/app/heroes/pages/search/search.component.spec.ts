@@ -1,24 +1,27 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { of } from 'rxjs';
-import { HeroesService } from '../../services/HeroesService';
+
 import { SearchComponent } from './search.component';
+import { HeroesService } from '../../services/heroes.service';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
+  let heroesService: HeroesService;
 
   beforeEach(async () => {
-    const heroesService = jasmine.createSpyObj('HeroesService', ['getParticipationByHero']);
-    let getParticipationByHeroSpy = heroesService.getParticipationByHero.and.returnValue(of([]));
+    const spy = jasmine.createSpyObj('HeroesService', ['getHeroesByName']);
+    let getHeroesByName = spy.getHeroesByName.and.returnValue(of([]));
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      providers: [{ provide: HeroesService, useValue: heroesService }]
+      providers: [{ provide: HeroesService, useValue: spy }]
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
+    heroesService = TestBed.inject(HeroesService);
     fixture.detectChanges();
   });
 
