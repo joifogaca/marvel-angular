@@ -57,9 +57,18 @@ De acordo com os dados consumidos pela API:
 
 V.1.0
 
-![enter image description here](https://photos.app.goo.gl/BGwVPScaByFRHyDn9)
+Tela de pesquisa
 
-![enter image description here](https://photos.app.goo.gl/wFwcxuQe7Va2YqdA8)
+<p align="center">
+  <img src="./docs/Marvel-tela-pesquisa-v1.png" alt="Main Page" width="100%">
+</p>
+
+Tela de retorno de pesquisa
+<p align="center">
+  <img src="./docs/Marvel-retorno-pesquisa-v1.png" alt="Main Page" width="100%">
+</p>
+
+
 
 ## Setup do projeto
 
