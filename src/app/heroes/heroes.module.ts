@@ -9,6 +9,8 @@ import { HeroesRoutingModule } from './heroes-routing.module';
 import { SearchComponent } from './pages/search/search.component';
 
 import { SharedModule } from '../shared/shared.module';
+import { FooterComponent } from './components/footer/footer.component';
+import { ApparancesComponent } from './pages/apparances/apparances.component';
 
 
 
@@ -19,6 +21,8 @@ import { SharedModule } from '../shared/shared.module';
     SearchComponent,
     CardSessionComponent,
     CardItemComponent,
+    ApparancesComponent,
+    
   ],
   imports: [
     CommonModule,
