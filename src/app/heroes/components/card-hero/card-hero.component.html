@@ -1,24 +1,33 @@
 <div class="col">
-<div class="card text-center">
-  <div class="card-body">
-    <h5 class="card-title">
-      {{ character?.name }}
-    </h5>
-      <img [ngSrc]="character?.thumbnail?.path +'.'+ character?.thumbnail?.extension" width="70" height="70"
-        class="card-img-top mb-3" alt="...">
+  <div class="card text-center " style="height: 650px;">
+    <img [ngSrc]="character?.thumbnail?.path +'.'+ character?.thumbnail?.extension" width="70" height="70"
+      class="card-img-top mb-3" alt="...">
+    <div class="card-body">
+      <h5 class="card-title">
+        {{ character?.name }}
+      </h5>
+      <p *ngIf="character?.description;" class="card-text mb-3 flex-grow-1 overflow-auto">
+        {{ character?.description }}
+      </p>
 
 
-        <p *ngIf="character?.description;" class="card-text mb-3">{{ character?.description }}</p>
-        <a *ngIf="character?.comics?.available ?? 0 > 0" title="comics"
-          [routerLink]="['/comics', character?.id]" href="#" class="btn btn-primary ">Comics</a>
-        <a *ngIf="character?.series?.available ?? 0 > 0" title="stories"
-          [routerLink]="['/series', character?.id]" href="#" class="btn btn-primary ml-3">Series</a>
-        <!-- <button type="button" class="btn btn-info btn-sm btn-block">Small button</button> -->
+      <!-- <button type="button" class="btn btn-info btn-sm btn-block">Small button</button> -->
+    </div>
+    <div class="card-footer" *ngIf="character?.comics?.available ?? 0 > 0 || character?.series?.available ?? 0 > 0">
+      <a *ngIf="character?.comics?.available ?? 0 > 0" title="comics"
+        [routerLink]="['/comics', character?.id]" href="#"
+        style="margin-right: 5px;"
+        class="btn btn-primary ">
+        Comics
+      </a>
+      <a *ngIf="character?.series?.available ?? 0 > 0" title="stories" [routerLink]="['/series', character?.id]"
+        href="#" class="btn btn-primary ">Series</a>
+    </div>
   </div>
+</div>
 
 
-
-    <!-- <section name="participations-hero">
+<!-- <section name="participations-hero">
         <div class="row">
           <section class="col">
             <card-session *ngIf="character?.comics?.available ?? 0 > 0" title="comics"
@@ -28,6 +37,3 @@
           </section>
         </div>
       </section> -->
-
-</div>
-</div>
