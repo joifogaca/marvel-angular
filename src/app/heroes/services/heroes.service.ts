@@ -65,7 +65,7 @@ export class HeroesService {
     );
   }
 
-  public getParticipationByHero(participation?: string, idHero?: string): Observable<ResponseParticipation> {
+  public getParticipationByHero(participation?: string, idHero?: string) {
 
     if (!participation?.trim()) {
       // if not search term, return empty hero array.

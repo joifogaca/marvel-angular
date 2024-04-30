@@ -4,6 +4,7 @@ import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 
 import { Character } from './../../model/Character';
 
 import { HeroesService } from '../../services/heroes.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 
 @Component({
@@ -13,11 +14,15 @@ import { HeroesService } from '../../services/heroes.service';
 })
 export class SearchComponent implements OnInit {
 
+
   characters$!: Observable<Character[]>;
   loading!: boolean;
   private searchTerms = new Subject<string>();
 
-  constructor(private heroesService: HeroesService) { }
+  constructor(private heroesService: HeroesService,
+    private router: Router,
+    private route: ActivatedRoute,
+  ) { }
 
   search(term: string): void {
     this.searchTerms.next(term);
@@ -37,7 +42,13 @@ export class SearchComponent implements OnInit {
       switchMap((term: string) => this.heroesService.getHeroesByName(term)),
       tap(() => this.loading = false),
       map(value => value),
-    )
+    )}
 
-  }
+    onComics(character: Character) {
+      this.router.navigate(['comics', character.id], { relativeTo: this.route })
+      }
+
+      onSeries(character: Character) {
+        this.router.navigate(['series', character.id], { relativeTo: this.route })
+      }
 }

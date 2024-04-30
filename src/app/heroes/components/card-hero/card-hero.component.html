@@ -15,12 +15,13 @@
     </div>
     <div class="card-footer" *ngIf="character?.comics?.available ?? 0 > 0 || character?.series?.available ?? 0 > 0">
       <a *ngIf="character?.comics?.available ?? 0 > 0" title="comics"
-        [routerLink]="['/comics', character?.id]" href="#"
+        (click)="onComics(character)"
         style="margin-right: 5px;"
         class="btn btn-primary ">
         Comics
       </a>
-      <a *ngIf="character?.series?.available ?? 0 > 0" title="stories" [routerLink]="['/series', character?.id]"
+      <a *ngIf="character?.series?.available ?? 0 > 0" title="stories"
+        (click)="onSeries(character)"
         href="#" class="btn btn-primary ">Series</a>
     </div>
   </div>

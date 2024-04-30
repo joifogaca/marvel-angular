@@ -7,12 +7,7 @@
 
 
 
-$gray-100: #6280a7;
-$gray-200: #334c71;
-$gray-300: #273a53;
-$gray-400: #14293d;
-$gray-500: #14293d;
-$gray-700: #27313f;
+
 $primary: #27313f;
 $secondary: #aa0505;
 $body-bg: #ffffff;
@@ -31,9 +26,13 @@ $theme-colors: (
 
 
 
-body {
+
+
+
+body{
   background-image: url('./assets/img/background.jpg');
   background-size: cover; /* Para garantir que a imagem cubra todo o fundo */
+ // opacity: 0.7;
   background-repeat: no-repeat; /* Para evitar a repetição da imagem */
 }
 

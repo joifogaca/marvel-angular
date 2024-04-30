@@ -1,5 +1,5 @@
 import { Character } from './../../model/Character';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Hero } from '../../model/request.interface';
 
 @Component({
@@ -9,7 +9,18 @@ import { Hero } from '../../model/request.interface';
 })
 export class CardHeroComponent {
 
-  @Input() hero?: Hero;
+
   @Input() character?: Character;
+  @Output() series = new EventEmitter();
+  @Output() comics = new EventEmitter();
+
+  onSeries(character?: Character) {
+    this.series.emit(character);
+  }
+
+  onComics(character?: Character) {
+    console.log('onComics');
+    this.comics.emit(character);
+  }
 
 }
