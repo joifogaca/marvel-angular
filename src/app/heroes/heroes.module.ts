@@ -4,7 +4,6 @@ import { NO_ERRORS_SCHEMA, NgModule } from '@angular/core';
 
 import { CardHeroComponent } from './components/card-hero/card-hero.component';
 import { CardItemComponent } from './components/card-item/card-item.component';
-import { CardSessionComponent } from './components/card-session/card-session.component';
 import { HeroesRoutingModule } from './heroes-routing.module';
 import { SearchComponent } from './pages/search/search.component';
 
@@ -19,10 +18,9 @@ import { ApparancesComponent } from './pages/apparances/apparances.component';
   declarations: [
     CardHeroComponent,
     SearchComponent,
-    CardSessionComponent,
     CardItemComponent,
     ApparancesComponent,
-    
+
   ],
   imports: [
     CommonModule,

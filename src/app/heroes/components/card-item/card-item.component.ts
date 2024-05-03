@@ -1,5 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { Thumbnail } from '../../model/Thumbnail';
+import { Apparances } from '../../model/Appearances';
+import { Item } from '../../model/Item';
 
 
 @Component({
@@ -8,6 +10,5 @@ import { Thumbnail } from '../../model/Thumbnail';
   styleUrl: './card-item.component.scss'
 })
 export class CardItemComponent {
-  @Input() description?: string;
-  @Input() thumbnail?: Thumbnail;
+  @Input() apparance?: Item;
 }

@@ -1,16 +1,19 @@
-<div class="card w-100 mt-1">
-  <div class="row g-0">
-    <div class="col-md-3" *ngIf="thumbnail"> <!--A api manda a thumbnail como null  -->
-      <img [ngSrc]="thumbnail.path +'.'+ thumbnail.extension"
+<div class="col-md-12 mb-3">
+<div class="card">
+  <div class="row g-1">
+    <div class="col-md-5" *ngIf="apparance?.thumbnail"> <!--A api manda a thumbnail como null  -->
+      <img [ngSrc]="apparance?.thumbnail?.path +'.'+ apparance?.thumbnail?.extension"
         class="img-fluid rounded-start"
         width="70"
         height="70"
         class="img-thumbnail" alt="...">
     </div>
-    <div class="col-md-9">
+    <div class="col-md-6">
       <div class="card-body">
-        <p class="card-text">{{ description }}</p>
+        <h5 class="card-title">{{ apparance?.title }}</h5>
+        <p class="card-text">{{ apparance?.description }}</p>
       </div>
     </div>
   </div>
+</div>
 </div>

@@ -18,5 +18,8 @@
         "titleBar.inactiveBackground": "#eb7b5999",
         "titleBar.inactiveForeground": "#15202b99"
     },
-    "peacock.color": "#eb7b59"
+    "peacock.color": "#eb7b59",
+    "conventionalCommits.scopes": [
+        "Tela de participações"
+    ]
 }
