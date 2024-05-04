@@ -18,14 +18,24 @@ export class ApparancesComponent {
   constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    const responseParticipation  = this.route.snapshot.data['responseParticipation'];
-this.result = responseParticipation.data.results;
-this.nomeCharacter = this.route.snapshot.queryParams['nome'];
-     this.participationName =  this.route.url.pipe(
-       first(),
-       map(url => url[0].path),
-       first()
-     );
-  }
+    console.log('Ahhh')
+    this.nomeCharacter = this.route.snapshot.queryParams['nome'];
+    this.participationName =  this.route.url.pipe(
+      first(),
+      map(url => url[0].path),
+      first()
+    );
+    this.route.data.subscribe(data => {
+      this.result = data['responseParticipation'].data.results;
+    }, error => {
+      console.error('Error loading data:', error);
+      // Handle error appropriately
+    });
+//     const responseParticipation  = this.route.snapshot.data['responseParticipation'].;
+// this.result = responseParticipation.data.results;
 
+
+//   }
+
+}
 }

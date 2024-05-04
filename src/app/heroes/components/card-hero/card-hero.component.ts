@@ -19,7 +19,6 @@ export class CardHeroComponent {
   }
 
   onComics(character?: Character) {
-    console.log('onComics');
     this.comics.emit(character);
   }
 

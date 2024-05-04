@@ -1,7 +1,7 @@
-<h1 class="text-white text-opacity-75 mt-3">  <strong>{{ nomeCharacter | uppercase }}</strong>
-  - PARTICIPAÇÃO EM {{ participationName | async | uppercase }}:
+<h1 class="text-white mt-3">  <strong>{{ nomeCharacter | uppercase }}</strong></h1>
+  <p class="text-white"> PARTICIPAÇÃO EM {{ participationName | async | uppercase }} </p>
 
-</h1>
+
 <!-- <p>{{ result | json }}</p> -->
 
 <ng-container *ngIf="result as items">

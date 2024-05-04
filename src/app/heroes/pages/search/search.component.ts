@@ -46,10 +46,9 @@ export class SearchComponent implements OnInit {
 
     onComics(character: Character) {
       this.router.navigate(['comics', character.id], { relativeTo: this.route, queryParams: { nome: character.name } })
-      {  }
       }
 
       onSeries(character: Character) {
-        this.router.navigate(['series', character.id], { relativeTo: this.route })
+        this.router.navigate(['comics', character.id], { relativeTo: this.route, queryParams: { nome: character.name } })
       }
 }

@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, delay, map, of, take, tap } from 'rxjs';
+import { Observable, catchError, delay, map, of, take, tap } from 'rxjs';
 import { environment } from '../../../environments/environment';
 import { AuthenticationHelperService } from '../../shared/authentication-helper.service';
 import { ResponseHero } from '../model/request.interface';
@@ -71,7 +71,7 @@ export class HeroesService {
       // if not search term, return empty hero array.
       return of();
     }
-
+    console.log(participation, idHero)
     let dataHash = this.AuthenticationHelper.genereteHashMd5();
     return this.httpClient.get<ResponseParticipation>(this.heroesUrl + '/' + idHero + '/' + participation, {
       params: {
@@ -80,8 +80,8 @@ export class HeroesService {
         hash: dataHash.hash,
       }
     }).pipe(
-      take(1)
-      //catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
+      take(1),
+      catchError(error =>{ console.log(error);
+        return of({} as ResponseParticipation);}));
 }
 }

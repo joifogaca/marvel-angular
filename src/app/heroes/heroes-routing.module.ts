@@ -6,8 +6,8 @@ import { apparancesResolverResolver } from './guards/apparances-resolver.resolve
 
 const routes: Routes = [
   { path: '', component: SearchComponent },
-  { path: 'series/:id', component: ApparancesComponent},
   { path: 'comics/:id', component: ApparancesComponent, resolve: { responseParticipation: apparancesResolverResolver}},
+  { path: 'series/:id', component: ApparancesComponent, resolve: { responseParticipation: apparancesResolverResolver}}
 ];
 
 @NgModule({
