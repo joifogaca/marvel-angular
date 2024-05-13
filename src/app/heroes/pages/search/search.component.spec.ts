@@ -4,6 +4,7 @@ import { of } from 'rxjs';
 
 import { SearchComponent } from './search.component';
 import { HeroesService } from '../../services/heroes.service';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -15,6 +16,9 @@ describe('SearchComponent', () => {
     let getHeroesByName = spy.getHeroesByName.and.returnValue(of([]));
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
+      imports: [
+        RouterTestingModule
+      ],
       providers: [{ provide: HeroesService, useValue: spy }]
     })
       .compileComponents();
