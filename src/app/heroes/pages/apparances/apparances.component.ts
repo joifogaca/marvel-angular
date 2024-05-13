@@ -18,7 +18,6 @@ export class ApparancesComponent {
   constructor( private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    console.log('Ahhh')
     this.nomeCharacter = this.route.snapshot.queryParams['nome'];
     this.participationName =  this.route.url.pipe(
       first(),

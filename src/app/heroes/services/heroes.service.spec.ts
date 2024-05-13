@@ -22,9 +22,24 @@ describe('HeroesService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('should call the get method with the correct endpoint', () => {
+  it('should call the get method http with method get', () => {
     const spy = spyOn(http, 'get').and.callThrough();
-    service.getHeroes('test');
+    service.getHeroesByName('test');
     expect(spy).toHaveBeenCalled();
+  });
+  it('should list with parameter nameStartsWith', () => {
+    service.getHeroes('test').subscribe(
+      result => {
+        expect(result).toBeTruthy();
+      }
+    );
+  });
+
+  it('should return participation By Hero', () => {
+    service.getParticipationByHero('comics').subscribe(
+      result => {
+        expect(result).toBeTruthy();
+      }
+    );
   });
 });
