@@ -26,7 +26,7 @@ export class HeroesService {
   public getHeroesByName(nameStartsWith: string): Observable<Character[]> {
     if (!nameStartsWith.trim()) {
       // if not search term, return empty hero array.
-      return of();
+      return of([]);
     }
 
     let dataHash = this.AuthenticationHelper.genereteHashMd5();

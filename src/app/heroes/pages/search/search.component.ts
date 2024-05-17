@@ -27,7 +27,6 @@ export class SearchComponent implements OnInit {
   ) { }
 
   search(term: string): void {
-
     this.searchTerms.next(term);
   }
 
@@ -36,6 +35,7 @@ export class SearchComponent implements OnInit {
     // this.characters$ = this.characters$.pipe(
     //   map(()=>[])
     // );
+    this.searchTerms.next('');
     this.loading = false;
     this.noHeroReturned = false;
   }
@@ -45,7 +45,7 @@ export class SearchComponent implements OnInit {
     this.characters$ = this.searchTerms.pipe(
       // wait 300ms after each keystroke before considering the term
       map(value => value.trim()),
-      filter(value => value.length > 1),
+      //filter(value => value.length > 1),
       debounceTime(300),
       // ignore new term if same as previous term
       distinctUntilChanged(),

@@ -1,7 +1,4 @@
-
-  <div class="mt-3 mb-3 pt-3">
-    <!-- <input #searchBox id="searchBox" class="form-control form-control-lg " (input)="search(searchBox.value)" type="text"
-      placeholder="Busque pelo seu Herói" aria-label=".form-control-lg example"> -->
+<div class="mt-3 mb-3 pt-3">
       <div class="input-group mb-3">
         <input
         [(ngModel)]="inputSearch"
@@ -9,8 +6,7 @@
         placeholder="Busque pelo seu Herói" (input)="search(searchBox.value)"
         aria-label="Busque pelo seu Herói" aria-describedby="button-addon2">
         <button class="btn btn-light" type="button" id="button-addon2"
-        (click)="clear()"
-        >
+        (click)="clear()">
           <i class="fa-solid fa-xmark fa-lg"></i>
         </button>
       </div>
@@ -25,13 +21,7 @@
       (series)="onSeries($event)"
       (comics)="onComics($event)"
       [character]="hero"></card-hero>
-
-
-       <!-- <section name="heroes-list" class="mt-3 text-bg-light">
-
-    </section> -->
     </div>
-
   </ng-container>
   <ng-container *ngIf="loading">
     <loading></loading>
