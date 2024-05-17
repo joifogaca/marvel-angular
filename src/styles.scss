@@ -6,22 +6,22 @@
 @import '../node_modules/bootstrap/scss/mixins';
 
 
+@import 'bootstrap/scss/bootstrap.scss';
 
 
-$primary: #27313f;
-$secondary: #aa0505;
-$body-bg: $gray-100;
-$body-color: #899db8;
+// $primary: #27313f;
+// $secondary: #aa0505;
+// $body-bg: $gray-100;
+// $body-color: #899db8;
 
 
-$input-placeholder-color:               var(--#{$prefix}gray-500);
+// $input-placeholder-color:               var(--#{$prefix}gray-500);
 
 // $theme-colors: (
 //   "primary": $primary,
 //   "secondary": $secondary
 // );
 
-@import 'bootstrap/scss/bootstrap.scss';
 
 
 
@@ -29,10 +29,11 @@ $input-placeholder-color:               var(--#{$prefix}gray-500);
 
 
 body{
-  background-image: url('./assets/img/background.jpg');
-  background-size: cover; /* Para garantir que a imagem cubra todo o fundo */
+  background-color: #ff2622;
+ // background-image: url('./assets/img/background.jpg');
+ // background-size: cover; /* Para garantir que a imagem cubra todo o fundo */
  // opacity: 0.7;
-  background-repeat: no-repeat; /* Para evitar a repetição da imagem */
+ // background-repeat: no-repeat; /* Para evitar a repetição da imagem */
 }
 
 

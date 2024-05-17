@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
+import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
 import { Character } from './../../model/Character';
 
 import { HeroesService } from '../../services/heroes.service';
@@ -14,9 +14,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class SearchComponent implements OnInit {
 
-
+  noHeroReturned?: boolean;
+  inputSearch: string = '';
   characters$!: Observable<Character[]>;
   loading!: boolean;
+  @ViewChild('searchBox') searchBoxRef!: ElementRef;
   private searchTerms = new Subject<string>();
 
   constructor(private heroesService: HeroesService,
@@ -25,7 +27,17 @@ export class SearchComponent implements OnInit {
   ) { }
 
   search(term: string): void {
+
     this.searchTerms.next(term);
+  }
+
+  clear(){
+    this.searchBoxRef.nativeElement.value = '';
+    // this.characters$ = this.characters$.pipe(
+    //   map(()=>[])
+    // );
+    this.loading = false;
+    this.noHeroReturned = false;
   }
 
   ngOnInit(): void {
@@ -37,10 +49,14 @@ export class SearchComponent implements OnInit {
       debounceTime(300),
       // ignore new term if same as previous term
       distinctUntilChanged(),
-      tap(() => this.loading = true),
+      tap(() => {this.loading = true, this.noHeroReturned = false}),
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.heroesService.getHeroesByName(term)),
-      tap(() => this.loading = false),
+      tap((value) =>{if(value.length <= 0)
+        {this.noHeroReturned = true;
+          console.log(value);
+        this.loading = false;}
+      }),
       map(value => value),
     )}
 
