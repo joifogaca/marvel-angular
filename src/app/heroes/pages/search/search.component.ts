@@ -32,12 +32,10 @@ export class SearchComponent implements OnInit {
 
   clear(){
     this.searchBoxRef.nativeElement.value = '';
-    // this.characters$ = this.characters$.pipe(
-    //   map(()=>[])
-    // );
     this.searchTerms.next('');
     this.loading = false;
     this.noHeroReturned = false;
+    console.log(this.noHeroReturned);
   }
 
   ngOnInit(): void {
@@ -52,13 +50,15 @@ export class SearchComponent implements OnInit {
       tap(() => {this.loading = true, this.noHeroReturned = false}),
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.heroesService.getHeroesByName(term)),
-      tap((value) =>{if(value.length <= 0)
-        {this.noHeroReturned = true;
-          console.log(value);
+      tap((value) =>{
+        console.log(value);
+        console.log(value.count); //value.length
+        this.noHeroReturned = value.count === 0;
         this.loading = false;}
-      }),
-      map(value => value),
-    )}
+      ),
+      map(value => value.results),
+    );
+  }
 
     onComics(character: Character) {
       this.router.navigate(['comics', character.id], { relativeTo: this.route, queryParams: { nome: character.name } })

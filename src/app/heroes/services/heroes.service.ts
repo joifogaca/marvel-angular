@@ -6,7 +6,10 @@ import { AuthenticationHelperService } from '../../shared/authentication-helper.
 import { ResponseHero } from '../model/request.interface';
 import { ResponseParticipation } from '../model/participation.interface';
 import { Character } from '../model/Character';
+import { DataResult } from '../model/MarvelResponse';
 import { MarvelResponse } from '../model/MarvelResponse';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -23,10 +26,10 @@ export class HeroesService {
 
 
 
-  public getHeroesByName(nameStartsWith: string): Observable<Character[]> {
+  public getHeroesByName(nameStartsWith: string): Observable<DataResult> {
     if (!nameStartsWith.trim()) {
       // if not search term, return empty hero array.
-      return of([]);
+      return of({} as DataResult);
     }
 
     let dataHash = this.AuthenticationHelper.genereteHashMd5();
@@ -38,7 +41,7 @@ export class HeroesService {
         nameStartsWith: nameStartsWith
       }
     }).pipe(
-      map(response => response.data.results),
+      map(response => response.data),
       delay(2000)
       //catchError(this.handleError<Hero[]>('searchHeroes', []))
     );

@@ -4,7 +4,7 @@ export interface MarvelResponse {
   data: DataResult;
 }
 
-interface DataResult {
+export interface DataResult {
   offset: number;
   limit: number;
   total: number,
