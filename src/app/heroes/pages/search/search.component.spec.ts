@@ -10,16 +10,17 @@ describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let heroesService: HeroesService;
+  let HeroesServiceSpy: jasmine.SpyObj<HeroesService>;
 
   beforeEach(async () => {
-    const spy = jasmine.createSpyObj('HeroesService', ['getHeroesByName']);
-    let getHeroesByName = spy.getHeroesByName.and.returnValue(of([]));
+    HeroesServiceSpy = jasmine.createSpyObj<HeroesService>('HeroesService',
+     ['getHeroesByName']);
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
       imports: [
         RouterTestingModule
       ],
-      providers: [{ provide: HeroesService, useValue: spy }]
+      providers: [{ provide: HeroesService, useValue: HeroesServiceSpy }]
     })
       .compileComponents();
 
@@ -38,5 +39,26 @@ describe('SearchComponent', () => {
     //dectar mudança do digitar
     //pega o valor da mudança
     //verificar se foi chamado o service com o valor da pesquisa
+  });
+  it('should clear search box and reset states when clear is called', () => {
+    const inputElement = fixture.nativeElement.querySelector('#search-box');
+    console.log(inputElement);
+    inputElement.value = 'test';
+    //component.searchBoxRef = { nativeElement: inputElement };
+    component.loading = true;
+    component.noHeroReturned = true;
+
+    component.clear();
+
+    expect(component.searchBoxRef.nativeElement.value).toBe('');
+    expect(component.loading).toBeFalse();
+    expect(component.noHeroReturned).toBeFalse();
+  });
+  it('should update searchTerms when search is called', async () => {
+    const searchTerm = 'hero';
+    component.search(searchTerm);
+    component.searchTerms.subscribe(term => {
+      expect(term).toBe(searchTerm);
+    });
   });
 });

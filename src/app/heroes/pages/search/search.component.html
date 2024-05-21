@@ -1,11 +1,12 @@
 <div class="mt-3 mb-3 pt-3">
       <div class="input-group mb-3">
         <input
-        [(ngModel)]="inputSearch"
-        type="text" #searchBox class="form-control"
+        type="text" id="search-box" #searchBox class="form-control"
         placeholder="Busque pelo seu Herói" (input)="search(searchBox.value)"
-        aria-label="Busque pelo seu Herói" aria-describedby="button-addon2">
-        <button class="btn btn-light" type="button" id="button-addon2"
+        aria-label="Busque pelo seu Herói" aria-describedby="btn-clear">
+        <button class="btn btn-light" type="button"
+        aria-label="Limpar a busca"
+        id="btn-clear"
         (click)="clear()">
           <i class="fa-solid fa-xmark fa-lg"></i>
         </button>

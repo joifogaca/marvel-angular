@@ -1,10 +1,10 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { BehaviorSubject, Observable, Subject, of } from 'rxjs';
-import { catchError, debounceTime, distinctUntilChanged, filter, map, switchMap, tap } from 'rxjs/operators';
-import { Character } from './../../model/Character';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Observable, Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, switchMap, tap } from 'rxjs/operators';
 
 import { HeroesService } from '../../services/heroes.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Character } from './../../model/Character';
 
 
 @Component({
@@ -15,11 +15,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class SearchComponent implements OnInit {
 
   noHeroReturned?: boolean;
-  inputSearch: string = '';
   characters$!: Observable<Character[]>;
   loading!: boolean;
   @ViewChild('searchBox') searchBoxRef!: ElementRef;
-  private searchTerms = new Subject<string>();
+  searchTerms = new Subject<string>();
 
   constructor(private heroesService: HeroesService,
     private router: Router,
@@ -35,7 +34,6 @@ export class SearchComponent implements OnInit {
     this.searchTerms.next('');
     this.loading = false;
     this.noHeroReturned = false;
-    console.log(this.noHeroReturned);
   }
 
   ngOnInit(): void {
@@ -51,8 +49,6 @@ export class SearchComponent implements OnInit {
       // switch to new search observable each time the term changes
       switchMap((term: string) => this.heroesService.getHeroesByName(term)),
       tap((value) =>{
-        console.log(value);
-        console.log(value.count); //value.length
         this.noHeroReturned = value.count === 0;
         this.loading = false;}
       ),
