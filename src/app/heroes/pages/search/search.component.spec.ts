@@ -42,21 +42,27 @@ describe('SearchComponent', () => {
   });
   it('should clear search box and reset states when clear is called', () => {
     const inputElement = fixture.nativeElement.querySelector('#search-box');
-    console.log(inputElement);
+    const btnClearElement = fixture.nativeElement.querySelector('#btn-clear');
+
     inputElement.value = 'test';
     //component.searchBoxRef = { nativeElement: inputElement };
     component.loading = true;
     component.noHeroReturned = true;
 
-    component.clear();
+    //component.clear();
+    btnClearElement.click();
+    fixture.detectChanges();
 
     expect(component.searchBoxRef.nativeElement.value).toBe('');
     expect(component.loading).toBeFalse();
     expect(component.noHeroReturned).toBeFalse();
   });
-  it('should update searchTerms when search is called', async () => {
+  it('should update searchTerms when a new value is typed', async () => {
+    const inputElement = fixture.nativeElement.querySelector('#search-box');
     const searchTerm = 'hero';
-    component.search(searchTerm);
+    inputElement.value = searchTerm;
+    inputElement.dispatchEvent(new Event('input'));
+    fixture.detectChanges();
     component.searchTerms.subscribe(term => {
       expect(term).toBe(searchTerm);
     });
