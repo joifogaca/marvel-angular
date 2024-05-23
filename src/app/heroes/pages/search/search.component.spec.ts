@@ -1,3 +1,4 @@
+import { Character } from './../../model/Character';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { of } from 'rxjs';
@@ -5,28 +6,32 @@ import { of } from 'rxjs';
 import { SearchComponent } from './search.component';
 import { HeroesService } from '../../services/heroes.service';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ActivatedRoute, Router } from '@angular/router';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
   let fixture: ComponentFixture<SearchComponent>;
   let heroesService: HeroesService;
   let HeroesServiceSpy: jasmine.SpyObj<HeroesService>;
+  let routerSpy: jasmine.SpyObj<Router>;
+  let activatedRouteSpy: jasmine.SpyObj<ActivatedRoute>;
 
   beforeEach(async () => {
     HeroesServiceSpy = jasmine.createSpyObj<HeroesService>('HeroesService',
      ['getHeroesByName']);
+     routerSpy = jasmine.createSpyObj(['navigate']);
+     activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', ['']);
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
-      imports: [
-        RouterTestingModule
-      ],
-      providers: [{ provide: HeroesService, useValue: HeroesServiceSpy }]
+      providers: [{ provide: HeroesService, useValue: HeroesServiceSpy },
+        { provide: Router, useValue: routerSpy },
+        { provide: ActivatedRoute, useValue: activatedRouteSpy },
+      ]
     })
       .compileComponents();
 
     fixture = TestBed.createComponent(SearchComponent);
     component = fixture.componentInstance;
-    heroesService = TestBed.inject(HeroesService);
     fixture.detectChanges();
   });
 
@@ -66,5 +71,43 @@ describe('SearchComponent', () => {
     component.searchTerms.subscribe(term => {
       expect(term).toBe(searchTerm);
     });
+  });
+  it('should navigate to comics screen when onComics', () => {
+    const character = {  id: '1',
+  name: 'hero',
+  description: 'hero',
+  thumbnail: { path: 'path',
+    extension: 'extenxion' },
+  comics: {items: [],
+    available: 0},
+  series: {items: [],
+    available: 0}}
+
+    const spy = routerSpy.navigate as jasmine.Spy;
+
+    component.onComics(character); // trigger action
+    expect(spy).toHaveBeenCalledWith(
+      ['comics', character.id],
+      { relativeTo: activatedRouteSpy, queryParams: { nome: character.name } }
+    );
+  });
+  it('should navigate to comics screen when onSeries', () => {
+    const character = {  id: '1',
+  name: 'hero',
+  description: 'hero',
+  thumbnail: { path: 'path',
+    extension: 'extenxion' },
+  comics: {items: [],
+    available: 0},
+  series: {items: [],
+    available: 0}}
+
+    const spy = routerSpy.navigate as jasmine.Spy;
+
+    component.onSeries(character); // trigger action
+    expect(spy).toHaveBeenCalledWith(
+      ['series', character.id],
+      { relativeTo: activatedRouteSpy, queryParams: { nome: character.name } }
+    );
   });
 });
