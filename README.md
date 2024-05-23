@@ -137,6 +137,15 @@ Biblioteca de componentes Angular que utiliza como base de layout Bootstrap
 
 - [ ] Adicionar tratamento de erro nas requisições e avisar ao usuário em caso de falha
 
+- [x] receber um feedback de carregamento enquanto a aplicação busca os dados que eu digitei.
+
+- [x] receber o feedback da aplicação quando o super-herói inserido no campo de busca não for válido ou não retornar nada na busca.
+
+- [] receber uma notificação caso perca a conexão com a internet durante a busca dos dados.
+
+
+- [] acessar os dados que já pesquisei de modo offline.
+
 - [ ] Tratar casos em que a valores de string venham vazio **" "**
 
 - [ ] Adicionar barra de carregamento na espera da lista de personagens
