@@ -47,27 +47,6 @@ export class HeroesService {
     );
   }
 
-  public getHeroes(nameStartsWith: string): Observable<ResponseHero> {
-    if (!nameStartsWith.trim()) {
-      // if not search term, return empty hero array.
-      return of();
-    }
-
-    let dataHash = this.AuthenticationHelper.genereteHashMd5();
-    return this.httpClient.get<ResponseHero>(this.heroesUrl, {
-      params: {
-        ts: dataHash.uuid,
-        apikey: this.AuthenticationHelper.publicKey,
-        hash: dataHash.hash,
-        nameStartsWith: nameStartsWith
-      }
-    }).pipe(
-      take(1),
-      delay(2000)
-      //catchError(this.handleError<Hero[]>('searchHeroes', []))
-    );
-  }
-
   public getParticipationByHero(participation?: string, idHero?: string) {
 
     if (!participation?.trim()) {

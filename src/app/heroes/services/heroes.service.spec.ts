@@ -28,7 +28,7 @@ describe('HeroesService', () => {
     expect(spy).toHaveBeenCalled();
   });
   it('should list with parameter nameStartsWith', () => {
-    service.getHeroes('test').subscribe(
+    service.getHeroesByName('test').subscribe(
       result => {
         expect(result).toBeTruthy();
       }

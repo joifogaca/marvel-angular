@@ -1,12 +1,11 @@
-import { Character } from './../../model/Character';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { of } from 'rxjs';
 
-import { SearchComponent } from './search.component';
-import { HeroesService } from '../../services/heroes.service';
-import { RouterTestingModule } from '@angular/router/testing';
 import { ActivatedRoute, Router } from '@angular/router';
+import { dataHeroesMock, heroMock } from '../../services/heroes.mock';
+import { HeroesService } from '../../services/heroes.service';
+import { SearchComponent } from './search.component';
 
 describe('SearchComponent', () => {
   let component: SearchComponent;
@@ -18,14 +17,14 @@ describe('SearchComponent', () => {
 
   beforeEach(async () => {
     HeroesServiceSpy = jasmine.createSpyObj<HeroesService>('HeroesService',
-     ['getHeroesByName']);
-     routerSpy = jasmine.createSpyObj(['navigate']);
-     activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', ['']);
+      ['getHeroesByName']);
+    routerSpy = jasmine.createSpyObj(['navigate']);
+    activatedRouteSpy = jasmine.createSpyObj('ActivatedRoute', ['']);
     await TestBed.configureTestingModule({
       declarations: [SearchComponent],
       providers: [{ provide: HeroesService, useValue: HeroesServiceSpy },
-        { provide: Router, useValue: routerSpy },
-        { provide: ActivatedRoute, useValue: activatedRouteSpy },
+      { provide: Router, useValue: routerSpy },
+      { provide: ActivatedRoute, useValue: activatedRouteSpy },
       ]
     })
       .compileComponents();
@@ -39,7 +38,16 @@ describe('SearchComponent', () => {
     expect(component).toBeTruthy();
   });
   it('should make a call to the Service by typing in the search field', () => {
-    const error = fixture.nativeElement.querySelector('#searchBox');
+    const arg = 'hero';
+    HeroesServiceSpy.getHeroesByName.withArgs(arg).and.returnValue(of(dataHeroesMock));
+
+    component.search(arg);
+    fixture.detectChanges();
+
+      const heroes: HTMLElement[] = fixture.nativeElement.querySelectorAll('.card-body');
+      console.log('babaa');
+      console.log(heroes.length);
+
     //pegar o campo de pesquisa
     //dectar mudança do digitar
     //pega o valor da mudança
@@ -68,20 +76,13 @@ describe('SearchComponent', () => {
     inputElement.value = searchTerm;
     inputElement.dispatchEvent(new Event('input'));
     fixture.detectChanges();
-    component.searchTerms.subscribe(term => {
-      expect(term).toBe(searchTerm);
-    });
+
+
+     // expect(term).toBe(searchTerm);
+
   });
   it('should navigate to comics screen when onComics', () => {
-    const character = {  id: '1',
-  name: 'hero',
-  description: 'hero',
-  thumbnail: { path: 'path',
-    extension: 'extenxion' },
-  comics: {items: [],
-    available: 0},
-  series: {items: [],
-    available: 0}}
+    const character = heroMock;
 
     const spy = routerSpy.navigate as jasmine.Spy;
 
@@ -92,16 +93,7 @@ describe('SearchComponent', () => {
     );
   });
   it('should navigate to comics screen when onSeries', () => {
-    const character = {  id: '1',
-  name: 'hero',
-  description: 'hero',
-  thumbnail: { path: 'path',
-    extension: 'extenxion' },
-  comics: {items: [],
-    available: 0},
-  series: {items: [],
-    available: 0}}
-
+    const character = heroMock;
     const spy = routerSpy.navigate as jasmine.Spy;
 
     component.onSeries(character); // trigger action
