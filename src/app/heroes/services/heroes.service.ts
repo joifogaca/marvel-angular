@@ -1,13 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, catchError, delay, map, of, take, tap } from 'rxjs';
+import { catchError, delay, map, Observable, of, take } from 'rxjs';
+
 import { environment } from '../../../environments/environment';
 import { AuthenticationHelperService } from '../../shared/authentication-helper.service';
-import { ResponseHero } from '../model/request.interface';
+import { DataResult, MarvelResponse } from '../model/MarvelResponse';
 import { ResponseParticipation } from '../model/participation.interface';
-import { Character } from '../model/Character';
-import { DataResult } from '../model/MarvelResponse';
-import { MarvelResponse } from '../model/MarvelResponse';
 
 
 
@@ -18,13 +16,11 @@ export class HeroesService {
 
   private heroesUrl = environment.apiUrl + 'characters';
 
+
   constructor(
     private httpClient: HttpClient,
     private AuthenticationHelper: AuthenticationHelperService) {
-
   }
-
-
 
   public getHeroesByName(nameStartsWith: string): Observable<DataResult> {
     if (!nameStartsWith.trim()) {
@@ -32,12 +28,12 @@ export class HeroesService {
       return of({} as DataResult);
     }
 
-    let dataHash = this.AuthenticationHelper.genereteHashMd5();
+    this.AuthenticationHelper.updateUuid();
     return this.httpClient.get<MarvelResponse>(this.heroesUrl, {
       params: {
-        ts: dataHash.uuid,
-        apikey: this.AuthenticationHelper.publicKey,
-        hash: dataHash.hash,
+        ts: this.AuthenticationHelper.getUuid(),
+        apikey: this.AuthenticationHelper.getPublicKey(),
+        hash: this.AuthenticationHelper.genereteHashMd5(),
         nameStartsWith: nameStartsWith
       }
     }).pipe(
@@ -53,17 +49,18 @@ export class HeroesService {
       // if not search term, return empty hero array.
       return of();
     }
-    console.log(participation, idHero)
-    let dataHash = this.AuthenticationHelper.genereteHashMd5();
+
     return this.httpClient.get<ResponseParticipation>(this.heroesUrl + '/' + idHero + '/' + participation, {
       params: {
-        ts: dataHash.uuid,
-        apikey: this.AuthenticationHelper.publicKey,
-        hash: dataHash.hash,
+        ts: this.AuthenticationHelper.getUuid(),
+        apikey: this.AuthenticationHelper.getPublicKey(),
+        hash: this.AuthenticationHelper.genereteHashMd5(),
       }
     }).pipe(
       take(1),
-      catchError(error =>{ console.log(error);
-        return of({} as ResponseParticipation);}));
-}
+      catchError(error => {
+        console.log(error);
+        return of({} as ResponseParticipation);
+      }));
+  }
 }

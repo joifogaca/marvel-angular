@@ -25,9 +25,7 @@ export class SearchComponent implements OnInit {
     private route: ActivatedRoute,
   ) { }
 
-  search(term: string): void {
-    this.searchTerms.next(term);
-  }
+
 
   clear(){
     this.searchBoxRef.nativeElement.value = '';
@@ -36,6 +34,9 @@ export class SearchComponent implements OnInit {
     this.noHeroReturned = false;
   }
 
+  search(term: string): void {
+    this.searchTerms.next(term);
+  }
   ngOnInit(): void {
 
     this.characters$ = this.searchTerms.pipe(

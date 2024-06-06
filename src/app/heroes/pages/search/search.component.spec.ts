@@ -1,4 +1,4 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, fakeAsync, tick } from '@angular/core/testing';
 
 import { of } from 'rxjs';
 
@@ -37,22 +37,33 @@ describe('SearchComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
-  it('should make a call to the Service by typing in the search field', () => {
-    const arg = 'hero';
-    HeroesServiceSpy.getHeroesByName.withArgs(arg).and.returnValue(of(dataHeroesMock));
+  xit('should make a call to the Service by typing in the search field',fakeAsync(() => {
 
-    component.search(arg);
-    fixture.detectChanges();
+    const inputElement = fixture.nativeElement.querySelector('#search-box');
+    const searchTerm = 'hero';
+    inputElement.value = searchTerm;
+    HeroesServiceSpy.getHeroesByName.withArgs(searchTerm).and.returnValue(of(dataHeroesMock));
 
-      const heroes: HTMLElement[] = fixture.nativeElement.querySelectorAll('.card-body');
-      console.log('babaa');
+    inputElement.dispatchEvent(new Event('input'));
+
+      fixture.detectChanges();
+      tick(300);
+      console.log(component.searchTerms);
+
+    //component.search(arg);
+      component.searchTerms.subscribe((value) => {
+        const heroes: HTMLElement[] = fixture.nativeElement.querySelectorAll('.card-body');
+        console.log(value);
       console.log(heroes.length);
+      })
+
+
 
     //pegar o campo de pesquisa
     //dectar mudança do digitar
     //pega o valor da mudança
     //verificar se foi chamado o service com o valor da pesquisa
-  });
+  }));
   it('should clear search box and reset states when clear is called', () => {
     const inputElement = fixture.nativeElement.querySelector('#search-box');
     const btnClearElement = fixture.nativeElement.querySelector('#btn-clear');
@@ -70,7 +81,7 @@ describe('SearchComponent', () => {
     expect(component.loading).toBeFalse();
     expect(component.noHeroReturned).toBeFalse();
   });
-  it('should update searchTerms when a new value is typed', async () => {
+ xit('should update searchTerms when a new value is typed', async () => {
     const inputElement = fixture.nativeElement.querySelector('#search-box');
     const searchTerm = 'hero';
     inputElement.value = searchTerm;

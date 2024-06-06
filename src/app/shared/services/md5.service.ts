@@ -9,8 +9,8 @@ export class Md5Service {
   constructor() { }
 
   public genereteHashMd5(values: string[]): string {
-    let concatenada = values.reduce((acumulador, stringAtual) => acumulador + stringAtual);
-    console.log('Concatenada:' + concatenada);
+    let concatenada = values.reduce(
+      (acumulador, stringAtual) => acumulador + stringAtual);
     return md5(concatenada);
   }
 }
